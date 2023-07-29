@@ -19,7 +19,7 @@ namespace Simple_Turn_Based_Battle_System
             Console.WriteLine("Enter the name for your hero: ");
             playerName = Console.ReadLine();
 
-            Thread.Sleep(500);
+            Thread.Sleep(750);
             Console.WriteLine($"Hello {playerName}! We will randomly generate your other stats");
 
             Player player = (Player)playerActions.CreateEntity(playerName);
@@ -154,16 +154,16 @@ namespace Simple_Turn_Based_Battle_System
                 if (player.health <= 0)
                 {
                     isPlayerAlive = false;
-                    Thread.Sleep(500);
+                    Thread.Sleep(750);
                     Console.WriteLine("Defeat!");
                 }
                 else if(enemy.health <= 0)
                 {
-                    Thread.Sleep(500);
+                    Thread.Sleep(750);
                     Console.WriteLine($"YOU WON! Against {enemy.name}!!!");
                     // Create enemy
                     enemy = (Enemy)enemyActions.CreateEntity(GetRandomEnemyName(random));
-                    Thread.Sleep(500);
+                    Thread.Sleep(750);
                     Console.WriteLine($"A wild {enemy.name} appeared!");
                 }
             }
@@ -185,7 +185,7 @@ namespace Simple_Turn_Based_Battle_System
         static int PlayerChoice()
         {
             int decision;
-            Thread.Sleep(500);
+            Thread.Sleep(750);
             Console.WriteLine("The player can:\n1. Attack\n2. Heal\n3. Check stats");
             Thread.Sleep(250);
             Console.WriteLine("Type the number you want to do!");
