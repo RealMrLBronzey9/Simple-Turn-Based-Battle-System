@@ -11,8 +11,8 @@ namespace Simple_Turn_Based_Battle_System
             PlayerActions playerActions = new PlayerActions();
             EnemyActions enemyActions = new EnemyActions();
 
-            // Create player
 
+            // Create player
             string playerName = "Joe";
             Console.WriteLine("Welcome to the simple turn based battle system game!");
             Thread.Sleep(1000);
@@ -25,23 +25,25 @@ namespace Simple_Turn_Based_Battle_System
             Player player = (Player)playerActions.CreateEntity(playerName);
 
 
-
-            // Game loop
-
+            // Initialize Game
             bool isPlayerAlive = true;
+            Thread.Sleep(750);
+            player.CheckStats();
+            
+            
             // Create enemy
             Enemy enemy = (Enemy)enemyActions.CreateEntity(GetRandomEnemyName(random));
             Thread.Sleep(1000);
             Console.WriteLine($"A wild {enemy.name} appeared!");
-            while (isPlayerAlive)
+            
+            while (isPlayerAlive) // Game loop
             {
-                
                 // Player & enemy choice num
                 int playerChoice;
                 int enemyChoice;
 
                 // Speed check
-                if(player.speed > enemy.speed)
+                if (player.speed > enemy.speed)
                 {
                     // Player goes first
                     playerChoice = PlayerChoice();
@@ -61,7 +63,6 @@ namespace Simple_Turn_Based_Battle_System
                             Console.WriteLine("This is not a valid choice!!");
                             continue;
                     }
-
                     // Enemy turn
                     enemyChoice = EnemyChoice(random);
 
@@ -74,13 +75,10 @@ namespace Simple_Turn_Based_Battle_System
                             enemy.health = enemyActions.Heal(enemy.health, enemy.maxHealth, random);
                             break;
                     }
-
                 }
-
 
                 else if (player.speed < enemy.speed)
                 {
-
                     // Enemy goes first
                     enemyChoice = EnemyChoice(random);
 
@@ -93,7 +91,6 @@ namespace Simple_Turn_Based_Battle_System
                             enemy.health = enemyActions.Heal(enemy.health, enemy.maxHealth, random);
                             break;
                     }
-
                     // Player turn
                     playerChoice = PlayerChoice();
 
@@ -113,7 +110,6 @@ namespace Simple_Turn_Based_Battle_System
                             continue;
                     }
                 }
-
 
                 else // When speeds are equal
                 {
@@ -135,7 +131,6 @@ namespace Simple_Turn_Based_Battle_System
                             Console.WriteLine("This is not a valid choice!!");
                             continue;
                     }
-
                     // Enemy turn
                     enemyChoice = EnemyChoice(random);
 
@@ -151,6 +146,8 @@ namespace Simple_Turn_Based_Battle_System
                 }
 
 
+
+                // Check if player or enemy is dead
                 if (player.health <= 0)
                 {
                     isPlayerAlive = false;
@@ -167,14 +164,12 @@ namespace Simple_Turn_Based_Battle_System
                     Console.WriteLine($"A wild {enemy.name} appeared!");
                 }
             }
-
-
             Console.ReadKey();
         }
 
 
-        // Choice methods
 
+        // Choice methods
         static string GetRandomEnemyName(Random random) // Name explains
         {
             int index = random.Next(EnemyNames.Names.Length);
@@ -209,7 +204,6 @@ namespace Simple_Turn_Based_Battle_System
             {
                 decision = 2;
             }
-
             return decision;
         }
     }

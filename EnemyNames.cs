@@ -20,11 +20,12 @@ namespace Simple_Turn_Based_Battle_System
             "Raider",
             "Soldier",
             "The Bad Girl",
-            "Xi Jinping",
+            "Politician Man",
             "My Bricked Motherboard",
             "Intel Core i5 7600k",
             "Nintendo",
-            "nVidia"
+            "nVidia",
+            "Most basic monster"
 
         };
 

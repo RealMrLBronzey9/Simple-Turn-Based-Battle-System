@@ -17,7 +17,6 @@ namespace Simple_Turn_Based_Battle_System
         public int speed;
 
         public abstract void CheckStats();
-
     }
 
 
@@ -62,7 +61,6 @@ namespace Simple_Turn_Based_Battle_System
         public override void CheckStats()
         {
             Console.WriteLine($"The stats for {name} are:\nATK: {attack}\nDEF: {defense}\nSPD: {speed}");
-
         }
 
     }
