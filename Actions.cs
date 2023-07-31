@@ -26,7 +26,7 @@ namespace Simple_Turn_Based_Battle_System
             int DEF;
             int SPD;
 
-            HP = random.Next(150, 500);
+            HP = random.Next(150, 400);
             ATK = random.Next(15, 25);
             DEF = random.Next(4, 10);
             SPD = random.Next(1, 5);
@@ -63,7 +63,8 @@ namespace Simple_Turn_Based_Battle_System
         // Player Heals
         public int Heal(int playerHP, int maxHP, Random random)
         {
-            int healAmount = playerHP + (random.Next(0, maxHP / 4));
+            int baseHeal = maxHP / 10;
+            int healAmount = baseHeal + random.Next(0, maxHP / 5);
 
             playerHP += healAmount;
             playerHP = Math.Min(playerHP, maxHP);
@@ -73,15 +74,10 @@ namespace Simple_Turn_Based_Battle_System
                 Thread.Sleep(750);
                 Console.WriteLine("You healed to MAX health!");
             }
-            else if (playerHP < maxHP && playerHP != 0)
+            else if (playerHP < maxHP)
             {
                 Thread.Sleep(750);
                 Console.WriteLine($"You healed {healAmount} points of HP!");
-            }
-            else
-            {
-                Thread.Sleep(750);
-                Console.WriteLine("L you didn't heal a point of HP!!");
             }
 
             return playerHP;
@@ -99,7 +95,7 @@ namespace Simple_Turn_Based_Battle_System
             int ATK;
             int DEF;
             int SPD;
-            HP = random.Next(200, 500);
+            HP = random.Next(200, 400);
             ATK = random.Next(15, 25);
             DEF = random.Next(3, 8);
             SPD = random.Next(1, 5);
@@ -141,7 +137,7 @@ namespace Simple_Turn_Based_Battle_System
         {
             Thread.Sleep(750);
             Console.WriteLine("The enemy decides to heal!");
-            int healAmount = enemyHP + (random.Next(0, maxHP / 4));
+            int healAmount = random.Next(0, maxHP / 8);
 
             enemyHP += healAmount;
             enemyHP = Math.Min(enemyHP, maxHP);
@@ -151,15 +147,10 @@ namespace Simple_Turn_Based_Battle_System
                 Thread.Sleep(750);
                 Console.WriteLine("The enemy healed to MAX HP!");
             }
-            else if (enemyHP < maxHP && enemyHP != 0)
+            else if (enemyHP < maxHP)
             {
                 Thread.Sleep(750);
                 Console.WriteLine($"The enemy healed {healAmount} points of HP!");
-            }
-            else
-            {
-                Thread.Sleep(750);
-                Console.WriteLine("Nice! The enemy wasn't able to heal!!");
             }
 
             return enemyHP;

@@ -182,12 +182,11 @@ namespace Simple_Turn_Based_Battle_System
         }
 
 
-
         // Choice methods
         static string GetRandomEnemyName(Random random) // Name explains
         {
-            int index = random.Next(EnemyNames.Names.Length);
-            return EnemyNames.Names[index];
+            int index = random.Next(EnemyNames.names.Length);
+            return EnemyNames.names[index];
         }
 
 
