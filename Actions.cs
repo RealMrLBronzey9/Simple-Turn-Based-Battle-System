@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Simple_Turn_Based_Battle_System
 {
@@ -30,9 +31,9 @@ namespace Simple_Turn_Based_Battle_System
             int DEF;
             int SPD;
 
-            HP = random.Next(15, 25);
-            ATK = random.Next(5, 10);
-            DEF = random.Next(5, 10);
+            HP = random.Next(150, 500);
+            ATK = random.Next(15, 25);
+            DEF = random.Next(4, 10);
             SPD = random.Next(1, 5);
 
             return new Player(name, HP, ATK, DEF, SPD); 
@@ -43,12 +44,12 @@ namespace Simple_Turn_Based_Battle_System
         public int Attack(int playerATK, int enemyDEF, int enemyHP)
         {
             Random random = new Random();
-            int baseDamage = 3;
+            int baseDamage = 6;
             // Random damage variables
             int minRDamage = -2;
             int maxRDamage = +2;
 
-            int attack = (enemyDEF - playerATK) + baseDamage + random.Next(minRDamage, maxRDamage);
+            int attack = (int)(playerATK * 1.5) - enemyDEF + baseDamage + random.Next(minRDamage, maxRDamage);
 
             if (attack <= 0)
             {
@@ -69,7 +70,7 @@ namespace Simple_Turn_Based_Battle_System
         // Player Heals
         public int Heal(int playerHP, int maxHP, Random random)
         {
-            int healAmount = playerHP + (random.Next(0, maxHP / 2));
+            int healAmount = playerHP + (random.Next(0, maxHP / 4));
 
             playerHP += healAmount;
             playerHP = Math.Min(playerHP, maxHP);
@@ -109,9 +110,9 @@ namespace Simple_Turn_Based_Battle_System
             int ATK;
             int DEF;
             int SPD;
-            HP = random.Next(15, 25);
-            ATK = random.Next(5, 10);
-            DEF = random.Next(5, 10);
+            HP = random.Next(200, 500);
+            ATK = random.Next(15, 25);
+            DEF = random.Next(3, 8);
             SPD = random.Next(1, 5);
 
             return new Enemy(name, HP, ATK, DEF, SPD);
@@ -124,12 +125,13 @@ namespace Simple_Turn_Based_Battle_System
             Random random = new Random();
             Thread.Sleep(750);
             Console.WriteLine($"The enemy decides to attack!");
-            int baseDamage = 3;
+            int baseDamage = 4;
             // Random damage variable
-            int minRDamage = -2;
-            int maxRDamage = +2;
+            int minRDamage = -3;
+            int maxRDamage = +3;
 
-            int attack = (playerDEF - enemyATK) + baseDamage + random.Next(minRDamage, maxRDamage);
+            int attack = (int)(enemyATK * 1.2) - playerDEF  + baseDamage + random.Next(minRDamage, maxRDamage);
+
 
             if (attack <= 0)
             {
@@ -152,7 +154,7 @@ namespace Simple_Turn_Based_Battle_System
         {
             Thread.Sleep(750);
             Console.WriteLine("The enemy decides to heal!");
-            int healAmount = enemyHP + (random.Next(0, maxHP / 2));
+            int healAmount = enemyHP + (random.Next(0, maxHP / 4));
 
             enemyHP += healAmount;
             enemyHP = Math.Min(enemyHP, maxHP);

@@ -10,21 +10,19 @@ namespace Simple_Turn_Based_Battle_System
     {
         // Basic stats
 
+        public string name;
         public int maxHealth;
         public int health;
         public int attack;
         public int defense;
         public int speed;
 
-        public abstract void CheckStats();
+        public abstract void DisplayStats();
     }
-
 
 
     class Player : Entity
     {
-        public string name;
-
         public Player(string name, int health, int attack, int defense, int speed)
         {
             this.health = health;
@@ -36,18 +34,15 @@ namespace Simple_Turn_Based_Battle_System
 
         }
 
-        public override void CheckStats()
+        public override void DisplayStats()
         {
-            Console.WriteLine($"The stats for {name} are:\nHEALTH: {health}\nATK: {attack}\nDEF: {defense}\nSPD: {speed}");
+            Console.WriteLine($"<< {name} >> -- HP: {health}/{maxHealth} -- ATK: {attack} -- DEF: {defense} -- SPD: {speed}\n");
         }
     }
 
 
-
     class Enemy : Entity
     {
-        public string name;
-
         public Enemy(string name, int health, int attack, int defense, int speed)
         {
             this.health = health;
@@ -58,10 +53,9 @@ namespace Simple_Turn_Based_Battle_System
             maxHealth = health;
         }
 
-        public override void CheckStats()
+        public override void DisplayStats()
         {
-            Console.WriteLine($"The stats for {name} are:\nATK: {attack}\nDEF: {defense}\nSPD: {speed}");
+            Console.WriteLine($"<< {name} >> -- HP: {health}/{maxHealth}");
         }
-
     }
 }
