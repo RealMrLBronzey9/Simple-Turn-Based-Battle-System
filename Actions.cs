@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Simple_Turn_Based_Battle_System
 {
@@ -16,12 +15,8 @@ namespace Simple_Turn_Based_Battle_System
     }
 
 
-
-
     class PlayerActions : IActions
     {
-
-
         // Create Player
         public Entity CreateEntity(string name)
         {
@@ -38,7 +33,6 @@ namespace Simple_Turn_Based_Battle_System
 
             return new Player(name, HP, ATK, DEF, SPD); 
         }
-
 
         // Player Attacks
         public int Attack(int playerATK, int enemyDEF, int enemyHP)
@@ -66,7 +60,6 @@ namespace Simple_Turn_Based_Battle_System
             return enemyHP;
         }
 
-
         // Player Heals
         public int Heal(int playerHP, int maxHP, Random random)
         {
@@ -93,15 +86,11 @@ namespace Simple_Turn_Based_Battle_System
 
             return playerHP;
         }
-
     }
-
-
 
 
     class EnemyActions : IActions
     {
-        
         public Entity CreateEntity(string name)
         {
             Random random = new Random();
@@ -117,7 +106,6 @@ namespace Simple_Turn_Based_Battle_System
 
             return new Enemy(name, HP, ATK, DEF, SPD);
         }
-
 
         // Enemy Attacks
         public int Attack(int enemyATK, int playerDEF, int playerHP)
@@ -147,7 +135,6 @@ namespace Simple_Turn_Based_Battle_System
             }
             return playerHP;
         }
-
 
         // Enemy Heals
         public int Heal(int enemyHP, int maxHP, Random random)

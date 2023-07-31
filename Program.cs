@@ -33,7 +33,8 @@ namespace Simple_Turn_Based_Battle_System
             Enemy enemy = (Enemy)enemyActions.CreateEntity(GetRandomEnemyName(random));
             Thread.Sleep(1000);
             Console.WriteLine($"A wild {enemy.name} appeared!");
-            int turn = 0;
+            int turn = 0; // How many turns to defeat enemy
+            int enemiesDefeated = 0;
 
 
             while (isPlayerAlive) // Game loop
@@ -161,13 +162,15 @@ namespace Simple_Turn_Based_Battle_System
                 {
                     isPlayerAlive = false;
                     Thread.Sleep(750);
-                    Console.WriteLine("Defeat!");
+                    Console.WriteLine($"Defeat! You have defeated {enemiesDefeated} enemies!!");
                 }
                 else if(enemy.health <= 0)
                 {
                     Thread.Sleep(750);
                     Console.WriteLine($"YOU WON! Against {enemy.name} within {turn} turns!!!");
                     turn = 0;
+                    enemiesDefeated++;
+
                     // Create enemy
                     enemy = (Enemy)enemyActions.CreateEntity(GetRandomEnemyName(random));
                     Thread.Sleep(750);
