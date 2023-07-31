@@ -54,18 +54,22 @@ namespace Simple_Turn_Based_Battle_System
                     player.DisplayStats();
 
                     // Player goes first
-                    playerChoice = PlayerChoice();
+                    playerChoice = PlayerChoice(player.userPoints);
 
                     switch (playerChoice)
                     {
                         case 1:
                             enemy.health = playerActions.Attack(player.attack, enemy.defense, enemy.health);
+                            player.userPoints++; // Add one UP after an attack
+                            player.userPoints = Math.Min(player.userPoints, 5); // Max TP is five
                             break;
                         case 2:
                             player.health = playerActions.Heal(player.health, player.maxHealth, random);
+                            player.userPoints = player.userPoints - 2;
                             break;
                         default:
                             Console.WriteLine("This is not a valid choice!!");
+                            turn--;
                             continue;
                     }
                     // Enemy turn
@@ -104,18 +108,22 @@ namespace Simple_Turn_Based_Battle_System
                     player.DisplayStats();
 
                     // Player turn
-                    playerChoice = PlayerChoice();
+                    playerChoice = PlayerChoice(player.userPoints);
 
                     switch (playerChoice)
                     {
                         case 1:
                             enemy.health = playerActions.Attack(player.attack, enemy.defense, enemy.health);
+                            player.userPoints++;
+                            player.userPoints = Math.Min(player.userPoints, 5); 
                             break;
                         case 2:
                             player.health = playerActions.Heal(player.health, player.maxHealth, random);
+                            player.userPoints = player.userPoints - 2;
                             break;
                         default:
                             Console.WriteLine("This is not a valid choice!!");
+                            turn--;
                             continue;
                     }
                 }
@@ -129,18 +137,22 @@ namespace Simple_Turn_Based_Battle_System
                     player.DisplayStats();
 
                     // Player goes first
-                    playerChoice = PlayerChoice();
+                    playerChoice = PlayerChoice(player.userPoints);
 
                     switch (playerChoice)
                     {
                         case 1:
                             enemy.health = playerActions.Attack(player.attack, enemy.defense, enemy.health);
+                            player.userPoints++;
+                            player.userPoints = Math.Min(player.userPoints, 5); 
                             break;
                         case 2:
                             player.health = playerActions.Heal(player.health, player.maxHealth, random);
+                            player.userPoints = player.userPoints - 2;
                             break;
                         default:
                             Console.WriteLine("This is not a valid choice!!");
+                            turn--;
                             continue;
                     }
                     // Enemy turn
@@ -190,7 +202,7 @@ namespace Simple_Turn_Based_Battle_System
         }
 
 
-        static int PlayerChoice()
+        static int PlayerChoice(int userPoint)
         {
             int decision;
             Thread.Sleep(750);
@@ -199,6 +211,15 @@ namespace Simple_Turn_Based_Battle_System
             Console.WriteLine("Type the number you want to do!");
             decision = Convert.ToInt32(Console.ReadLine());
 
+            if (decision == 2 && userPoint >= 2)
+            {
+                return decision;
+            }
+            else if (decision == 2 && userPoint < 2)
+            {
+                Console.WriteLine("You don't have enough UP!!");
+                return -1; // Loop the choice
+            }
             return decision;
         }
 

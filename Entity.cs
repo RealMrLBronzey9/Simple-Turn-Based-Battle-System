@@ -23,6 +23,7 @@ namespace Simple_Turn_Based_Battle_System
 
     class Player : Entity
     {
+        public int userPoints = 5;
         public Player(string name, int health, int attack, int defense, int speed)
         {
             this.health = health;
@@ -36,7 +37,7 @@ namespace Simple_Turn_Based_Battle_System
 
         public override void DisplayStats()
         {
-            Console.WriteLine($"<< {name} >> -- HP: {health}/{maxHealth} -- ATK: {attack} -- DEF: {defense} -- SPD: {speed}\n");
+            Console.WriteLine($"<< {name} >> -- HP: {health}/{maxHealth} -- UP: {userPoints}/5 -- ATK: {attack} -- DEF: {defense} -- SPD: {speed}\n");
         }
     }
 

@@ -49,12 +49,14 @@ namespace Simple_Turn_Based_Battle_System
             {
                 Thread.Sleep(750);
                 Console.WriteLine("The attack was ineffective! One damage inflicted!");
+                Console.WriteLine("1 UP restored!");
                 enemyHP = --enemyHP;
             }
             else
             {   // When the attack is over 0
                 Thread.Sleep(750);
                 Console.WriteLine($"The attack dealt {attack} points of damage!");
+                Console.WriteLine("1 UP restored!");
                 enemyHP = enemyHP - attack;
             }
             return enemyHP;
@@ -73,11 +75,13 @@ namespace Simple_Turn_Based_Battle_System
             {
                 Thread.Sleep(750);
                 Console.WriteLine("You healed to MAX health!");
+                Console.WriteLine("2 UP used!");
             }
             else if (playerHP < maxHP)
             {
                 Thread.Sleep(750);
                 Console.WriteLine($"You healed {healAmount} points of HP!");
+                Console.WriteLine("2 UP used!");
             }
 
             return playerHP;
