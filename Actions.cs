@@ -49,24 +49,23 @@ namespace Simple_Turn_Based_Battle_System
             {
                 Thread.Sleep(750);
                 Console.WriteLine("The attack was ineffective! One damage inflicted!");
-                Console.WriteLine("1 UP restored!");
                 enemyHP = --enemyHP;
             }
             else
             {   // When the attack is over 0
                 Thread.Sleep(750);
                 Console.WriteLine($"The attack dealt {attack} points of damage!");
-                Console.WriteLine("1 UP restored!");
                 enemyHP = enemyHP - attack;
             }
+            Console.WriteLine("1 UP restored!");
             return enemyHP;
         }
 
         // Player Heals
         public int Heal(int playerHP, int maxHP, Random random)
         {
-            int baseHeal = maxHP / 10;
-            int healAmount = baseHeal + random.Next(0, maxHP / 5);
+            int baseHeal = maxHP / 9;
+            int healAmount = baseHeal + random.Next(0, maxHP / 6);
 
             playerHP += healAmount;
             playerHP = Math.Min(playerHP, maxHP);
@@ -75,16 +74,41 @@ namespace Simple_Turn_Based_Battle_System
             {
                 Thread.Sleep(750);
                 Console.WriteLine("You healed to MAX health!");
-                Console.WriteLine("2 UP used!");
             }
             else if (playerHP < maxHP)
             {
                 Thread.Sleep(750);
                 Console.WriteLine($"You healed {healAmount} points of HP!");
-                Console.WriteLine("2 UP used!");
             }
-
+            Console.WriteLine("2 UP used!");
             return playerHP;
+        }
+
+        // UP cost stronger attack
+        public int BigAttack(int playerATK, int enemyDEF, int enemyHP)
+        {
+            Random random = new Random();
+            int baseDamage = 24;
+            // Random damage variables
+            int minRDamage = -6;
+            int maxRDamage = +10;
+
+            int attack = (playerATK * 2) - enemyDEF + baseDamage + random.Next(minRDamage, maxRDamage);
+
+            if (attack <= 0)
+            {
+                Thread.Sleep(750);
+                Console.WriteLine("The super attack was ineffective! One damage inflicted!");
+                enemyHP = --enemyHP;
+            }
+            else
+            {   // When the attack is over 0
+                Thread.Sleep(750);
+                Console.WriteLine($"The super attack dealt {attack} points of damage!");
+                enemyHP = enemyHP - attack;
+            }
+            Console.WriteLine("3 UP used!");
+            return enemyHP;
         }
     }
 

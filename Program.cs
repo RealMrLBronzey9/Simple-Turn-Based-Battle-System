@@ -67,6 +67,10 @@ namespace Simple_Turn_Based_Battle_System
                             player.health = playerActions.Heal(player.health, player.maxHealth, random);
                             player.userPoints = player.userPoints - 2;
                             break;
+                        case 3:
+                            enemy.health = playerActions.BigAttack(player.attack, enemy.defense, enemy.health);
+                            player.userPoints = player.userPoints - 3;
+                            break;
                         default:
                             Console.WriteLine("This is not a valid choice!!");
                             turn--;
@@ -121,6 +125,10 @@ namespace Simple_Turn_Based_Battle_System
                             player.health = playerActions.Heal(player.health, player.maxHealth, random);
                             player.userPoints = player.userPoints - 2;
                             break;
+                        case 3:
+                            enemy.health = playerActions.BigAttack(player.attack, enemy.defense, enemy.health);
+                            player.userPoints = player.userPoints - 3;
+                            break;
                         default:
                             Console.WriteLine("This is not a valid choice!!");
                             turn--;
@@ -149,6 +157,10 @@ namespace Simple_Turn_Based_Battle_System
                         case 2:
                             player.health = playerActions.Heal(player.health, player.maxHealth, random);
                             player.userPoints = player.userPoints - 2;
+                            break;
+                        case 3:
+                            enemy.health = playerActions.BigAttack(player.attack, enemy.defense, enemy.health);
+                            player.userPoints = player.userPoints - 3;
                             break;
                         default:
                             Console.WriteLine("This is not a valid choice!!");
@@ -206,8 +218,8 @@ namespace Simple_Turn_Based_Battle_System
         {
             int decision;
             Thread.Sleep(750);
-            Console.WriteLine("The player can:\n1. Attack\n2. Heal");
-            Thread.Sleep(250);
+            Console.WriteLine("The player can:\n1. Attack (+1 UP)\n2. Heal (-2 UP)\n3. Bigger Attack (-3 UP)");
+            Thread.Sleep(100);
             Console.WriteLine("Type the number you want to do!");
             decision = Convert.ToInt32(Console.ReadLine());
 
